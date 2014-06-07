@@ -20,13 +20,22 @@ Handle<Value> Worker() {
 Handle<Value> Decode(const Arguments& args) {
 	HandleScope scope;
 
-	Local<String> ret = String::New("decoder");
+	// Local<String> ret = String::New("decoder");
+	Local<Array> ret = Array::New(3);
+	ret->Set(0, String::New("decoder"));
 
-	Local<Value> def = Local<Value>::New(Worker());
+	// Local<Value> def = Local<Value>::New(Worker());
+	ret->Set(1, Worker());
+	// if (def->IsNumber()) {
+	// 	ret = String::Concat(ret, String::New("___")); 
+	// 	ret = String::Concat(ret, def->ToString()); 
+	// }
 
-	if (def->IsNumber()) {
-		ret = String::Concat(ret, String::New("___")); 
-		ret = String::Concat(ret, def->ToString()); 
+	if (args.Length() >= 1) {
+		if (args[0]->IsString()) {
+	// 		ret = String::Concat(ret, args[0]->ToString());
+			ret->Set(2, args[0]);
+		}
 	}
 
 	return scope.Close(ret);
