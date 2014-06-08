@@ -1,5 +1,10 @@
 var bt = require('./build/Release/btparse');
+var fs = require("fs");
 
 console.dir(bt);
 
-console.log(bt.decode('__my_external_string'));
+fs.readFile("jp.torrent", {encoding:null}, function(e, torrent) {
+	console.log(bt.decode(torrent));
+});
+
+// console.log(bt.decode(torrent));

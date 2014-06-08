@@ -8,10 +8,10 @@
     "preinstall": "node-gyp rebuild",
     "start":"node ./index.js"
   },
-  "engines" : { "node" : ">=0.10 <0.11" },
+  "engines" : { "node" : ">=0.8 <0.11" },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:reklatsmasters/btparse.git"
+    "url": "git+ssh://git@github.com:reklatsmasters/node-btparse.git"
   },
   "keywords": [
     "torrent",
@@ -26,8 +26,8 @@
   "author": "Dmitry Tsvettsikh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/reklatsmasters/btparse/issues"
+    "url": "https://github.com/reklatsmasters/node-btparse/issues"
   },
-  "homepage": "https://github.com/reklatsmasters/btparse",
+  "homepage": "https://github.com/reklatsmasters/node-btparse",
   "gypfile": true
 }
