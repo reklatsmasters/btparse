@@ -1,7 +1,7 @@
 {
   "name": "btparse",
-  "version": "0.0.0",
-  "description": "Very fast way for parse torrent files. With C++ implementation!",
+  "version": "0.1.0",
+  "description": "Very fast way for parse torrent files. With C++ implementation, based on libtorrent.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +11,7 @@
   "engines" : { "node" : ">=0.8 <0.11" },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:reklatsmasters/node-btparse.git"
+    "url": "git://github.com/reklatsmasters/node-btparse.git"
   },
   "keywords": [
     "torrent",
@@ -23,7 +23,10 @@
     "bencode",
     "bdecode"
   ],
-  "author": "Dmitry Tsvettsikh",
+  "author": {
+    "name": "Dmitry Tsvettsikh",
+    "email": "dmitrycvet@gmail.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/reklatsmasters/node-btparse/issues"

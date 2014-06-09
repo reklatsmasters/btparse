@@ -1,5 +1,5 @@
-#ifndef BDECODE_H
-#define BDECODE_H
+#ifndef BTDECODE_H
+#define BTDECODE_H
 
 #ifndef BUILDING_NODE_EXTENSION
 	#define BUILDING_NODE_EXTENSION
