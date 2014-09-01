@@ -3,3 +3,4 @@ node_modules
 *sublime*
 external
 *.torrent
+lib

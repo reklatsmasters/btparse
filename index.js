@@ -1,3 +1,1 @@
-var bt = require('./build/Release/btparse');
-
-module.exports = bt;
+module.exports = require('./lib/btparse');
