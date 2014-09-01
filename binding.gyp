@@ -1,6 +1,7 @@
 {
 	"targets": [{
 		"target_name": "btparse",
-		"sources": [ "main.cc", "v8decode.cc" ]
+		"include_dirs":["src"],
+		"sources": [ "src/main.cc", "src/v8decode.cc" ]
 	}]
 }
