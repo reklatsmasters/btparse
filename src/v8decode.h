@@ -1,8 +1,8 @@
 #ifndef V8DECODE_H
 #define V8DECODE_H
 
-#include <node.h>
+#include <nan.h>
 
-v8::Handle<v8::Value> decode(const v8::Arguments& args);
+NAN_METHOD(decode);
 
 #endif
