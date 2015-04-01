@@ -64,7 +64,7 @@ v8::Handle<v8::Value> entry_parse(entry &e, bool decode_string = false) {
 			auto dict = e.dict();
 			v8::Local<v8::Object> obj = NanNew<v8::Object>();
 
-			for(auto it = std::begin(dict); it != std::end(dict); ++it) {
+			for(auto it = dict.begin(); it != dict.end(); ++it) {
 				obj->Set(NanNew(it->first), entry_parse(it->second, decode_string));
 			}
 
