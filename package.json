@@ -1,13 +1,16 @@
 {
   "name": "btparse",
   "version": "0.1.1",
-  "description": "Very fast way for parse torrent files. With C++ implementation, based on libtorrent.",
+  "description": "Fastest node library for decoding bencoded data and parse torrents. Native C++ implementation, based on libtorrent.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node ./index.js"
+    "start": "node index.js",
+    "bench": "./node_modules/.bin/matcha benchmark/decode.js"
   },
-  "engines" : { "node" : ">=0.10 <0.11" },
+  "engines": {
+    "node": ">=0.10"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/reklatsmasters/node-btparse.git"
@@ -24,12 +27,23 @@
   ],
   "author": {
     "name": "Dmitry Tsvettsikh",
-    "email": "dmitrycvet@gmail.com"
+    "email": "me@reklatsmasters.com"
   },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/reklatsmasters/node-btparse/issues"
   },
   "homepage": "https://github.com/reklatsmasters/node-btparse",
-  "gypfile": true
+  "gypfile": true,
+  "dependencies": {
+    "nan": "^1.7.0"
+  },
+  "devDependencies": {
+    "bencode": "latest",
+    "bencoding": "latest",
+    "bncode": "latest",
+    "dht-bencode": "latest",
+    "dht.js": "latest",
+    "matcha": "~0.6.0"
+  }
 }
