@@ -20,3 +20,12 @@ NAN_METHOD(decode) {
 
 	NanReturnValue(bt::decode(from.begin(), from.end()));
 }
+
+NAN_METHOD(decode_full) {
+	NanScope();
+
+	// строка c данными
+	std::string from = std::string(node::Buffer::Data(args[0]), node::Buffer::Length(args[0]) );
+
+	NanReturnValue(bt::decode(from.begin(), from.end(), true));
+}

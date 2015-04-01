@@ -2,7 +2,7 @@
 
 var bt = require('./lib/btparse');
 
-exports.decode = function(data) {
+exports.decode = function(data, needDecodeString) {
   if (!arguments.length) {
     throw new TypeError("Wrong number of arguments: 1 argument required, but only 0 present");
   }
@@ -17,7 +17,7 @@ exports.decode = function(data) {
     throw new TypeError("Wrong type of argument 1");
   }
 
-  var ret = bt.decode(data);
+  var ret = needDecodeString ? bt.decode_full(data) : bt.decode(data);
 
   if (typeof ret === 'undefined') {
     throw new Error('Decode error');

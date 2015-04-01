@@ -34,7 +34,7 @@ v8::Handle<v8::Value> read_until(InIt& in, InIt end, char end_token, bool& err) 
 	return NanEscapeScope(NanNew(ret));
 }
 
-// читает строку заданного размера
+// читает строку заданного размера в буфер
 template<class InIt>
 v8::Handle<v8::Value> read_buffer(InIt& in, InIt end, int64_t len, bool& err) {
 	NanEscapableScope();
@@ -53,10 +53,29 @@ v8::Handle<v8::Value> read_buffer(InIt& in, InIt end, int64_t len, bool& err) {
 	return NanEscapeScope(NanNewBufferHandle((char*)str.data(), str.size()));
 }
 
+// читает строку заданного размера
+template<class InIt>
+v8::Handle<v8::Value> read_string(InIt& in, InIt end, int64_t len, bool& err) {
+	NanEscapableScope();
+	std::string str;
+
+	for (int64_t i = 0; i < len; ++i) {
+		if (in == end) {
+			err = true;
+			return NanUndefined();
+		}
+
+		str += *in;
+		++in;
+	}
+
+	return NanEscapeScope(NanNew(str));
+}
+
 typedef v8::Local<v8::Value> value_type;
 
 template<class InIt>
-v8::Handle<v8::Value> bdecode_recursive(InIt& in, InIt end, bool& err, int depth) {
+v8::Handle<v8::Value> bdecode_recursive(InIt& in, InIt end, bool& err, int depth, bool decodeString) {
 	NanEscapableScope();
 	v8::Local<v8::Value> entity;
 
@@ -96,7 +115,7 @@ v8::Handle<v8::Value> bdecode_recursive(InIt& in, InIt end, bool& err, int depth
 
 		++in; // 'l'
 		while (*in != 'e') {
-			list.push_back( NanNew(bdecode_recursive(in, end, err, depth + 1)) );
+			list.push_back( NanNew(bdecode_recursive(in, end, err, depth + 1, decodeString)) );
 
 			if (err) {
 				return NanUndefined();
@@ -130,14 +149,13 @@ v8::Handle<v8::Value> bdecode_recursive(InIt& in, InIt end, bool& err, int depth
 		++in; // 'd'
 
 		while (*in != 'e') {
-			v8::Local<v8::Value> b_key = NanNew(bdecode_recursive(in, end, err, depth + 1));
+			v8::Local<v8::Value> b_key = NanNew(bdecode_recursive(in, end, err, depth + 1, decodeString));
 
-			if (err || !node::Buffer::HasInstance(b_key)) {
+			if (err || !(node::Buffer::HasInstance(b_key) || b_key->IsString() )) {
 				return NanUndefined();
 			}
 
-			v8::Local<v8::String> key = NanNew<v8::String>( node::Buffer::Data(b_key), node::Buffer::Length(b_key) );
-			entity_map->Set(key, NanNew(bdecode_recursive(in, end, err, depth + 1)));
+			entity_map->Set(b_key, NanNew(bdecode_recursive(in, end, err, depth + 1, decodeString)));
 
 			if (err) {
 				return NanUndefined();
@@ -166,7 +184,11 @@ v8::Handle<v8::Value> bdecode_recursive(InIt& in, InIt end, bool& err, int depth
 
 			++in; // ':'
 
-			entity = NanNew(read_buffer(in, end, len->ToInteger()->Value(), err));
+			if (decodeString) {
+				entity = NanNew(read_string(in, end, len->ToInteger()->Value(), err));
+			} else {
+				entity = NanNew(read_buffer(in, end, len->ToInteger()->Value(), err));
+			}
 
 			if (err) {
 				return NanUndefined();
@@ -182,11 +204,11 @@ v8::Handle<v8::Value> bdecode_recursive(InIt& in, InIt end, bool& err, int depth
 
 // главная функция-декодер
 template<class InIt>
-v8::Handle<v8::Value> decode(InIt start, InIt end) {
+v8::Handle<v8::Value> decode(InIt start, InIt end, bool decodeString = false) {
 	NanEscapableScope();
 
 	bool err = false;
-	v8::Local<v8::Value> entity = NanNew(bdecode_recursive(start, end, err, 0));
+	v8::Local<v8::Value> entity = NanNew(bdecode_recursive(start, end, err, 0, decodeString));
 
 	if (err) {
 		return NanUndefined();
