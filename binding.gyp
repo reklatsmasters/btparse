@@ -2,7 +2,7 @@
 	"targets": [{
 		"target_name": "btparse",
 		"include_dirs":["src", "<!(node -e \"require('nan')\")"],
-		"sources": [ "src/main.cc", "src/v8decode.cc" ]
+		"sources": [ "src/main.cc", "src/v8decode.cc", "src/entry.cc" ]
 	},
 
 	{
