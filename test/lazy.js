@@ -2,14 +2,14 @@
 
 /* eslint-env es6,node */
 
-const test = require('tape')
-const decode = require('../lazy')
+var test = require('tape')
+var decode = require('../lazy')
 
-const test_if = (cond, title, impl) => cond ? test(title, impl) : test.skip(title, impl)
-const NODE_VER = parseInt(process.versions.node)
+var test_if = (cond, title, impl) => cond ? test(title, impl) : test.skip(title, impl)
+var NODE_VER = parseInt(process.versions.node)
 
 test_if(NODE_VER > 4, 'lazy dict', t => {
-  const torrent = decode('d2:abi4e2:bci1e2:bei44e2:bble2:aale2:dxlee')
+  var torrent = decode('d2:abi4e2:bci1e2:bei44e2:bble2:aale2:dxlee')
 
   t.true('ab' in torrent)
   t.is(torrent.ab, 4)
@@ -21,14 +21,14 @@ test_if(NODE_VER > 4, 'lazy dict', t => {
 })
 
 test_if(NODE_VER > 4,'lazy list', t => {
-  const torrent = decode('d2:abli4eee')
+  var torrent = decode('d2:abli4eee')
 
   t.deepEqual(torrent.ab, [4])
   t.end()
 })
 
 test_if(NODE_VER > 4,'lazy throws', t => {
-  const torrent = decode('d2:abi4ee')
+  var torrent = decode('d2:abi4ee')
 
   t.throws(() => {
     torrent.x = 1
