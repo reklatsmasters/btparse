@@ -1,35 +1,61 @@
-import test from 'ava'
-import decode from '../'
+'use strict'
 
-test('int', t => {
-  t.is(decode('i2e'), 2)
-  t.is(decode('i-23e'), -23)
+var test = require('tape')
+var decode = require('../')
+var from = require('../lib/from')
+var compare = require('buffer-compare')
 
-  t.throws(() => decode('i2'))
-  t.throws(() => decode('ie'))
+test('int', function (t) {
+  t.equal(decode('i2e'), 2)
+  t.equal(decode('i-23e'), -23)
+
+  t.throws(function () {
+    decode('i2')
+  })
+  t.throws(function () {
+    decode('ie')
+  })
+
+  t.end()
 })
 
-test('string', t => {
-  t.is(Buffer.compare(decode('2:ab'), Buffer.from('ab')), 0)
+test('string', function (t) {
+  t.is(compare(decode('2:ab'), from('ab')), 0)
 
-  t.throws(() => decode('2:a'))
-  t.throws(() => decode('-2:ab'))
+  t.throws(function () {
+    decode('2:a')
+  })
+  t.throws(function () {
+    decode('-2:ab')
+  })
+
+  t.end()
 })
 
-test('list', t => {
+test('list', function (t) {
   t.deepEqual(decode('le'), [])
   t.deepEqual(decode('li2ee'), [2])
-  t.deepEqual(decode('li2e2:abe'), [2, Buffer.from('ab')])
+  t.deepEqual(decode('li2e2:abe'), [2, from('ab')])
   t.deepEqual(decode('lli1eee'), [[1]])
+
+  t.end()
 })
 
-test('dict', t => {
+test('dict', function (t) {
   t.deepEqual(decode("d2:abi2ee"), {ab: 2})
   t.deepEqual(decode("d2:abli2eee"), {ab: [2]})
   t.deepEqual(decode("d2:ab2:cde"), {ab: Buffer.from('cd')})
   t.deepEqual(decode("d2:abdee"), {ab: {}})
 
-  t.throws(() => decode("di1ei2ee"))
-  t.throws(() => decode("dlei2ee"))
-  t.throws(() => decode("ddei2ee"))
+  t.throws(function () {
+    decode("di1ei2ee")
+  })
+  t.throws(function () {
+    decode("dlei2ee")
+  })
+  t.throws(function () {
+    decode("ddei2ee")
+  })
+
+  t.end()
 })

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "cover": "nyc --reporter=html --reporter=text npm test",
-    "test": "ava test/*.js",
+    "test": "tape test/*.js",
     "bench": "matcha ./bench/decode.js"
   },
   "engines": {
@@ -35,10 +35,10 @@
   "homepage": "https://github.com/reklatsmasters/btparse",
   "dependencies": {},
   "devDependencies": {
-    "ava": "^0.18.0",
     "bencode": "^0.11.0",
-    "bencoding": "0.0.1",
+    "buffer-compare": "^1.1.1",
     "matcha": "^0.7.0",
-    "nyc": "^10.1.2"
+    "nyc": "^10.1.2",
+    "tape": "^4.6.3"
   }
 }
