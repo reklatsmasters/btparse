@@ -31,7 +31,7 @@ Parse and decode bencoded message.
 ## Lazy
 
 ##### `decode(input: Buffer|String) -> Proxy<Object>|Number|Array|Buffer`
-The main difference is that **all** buffers aren't decoded into a string in parsing time. Other entities parsed as in the main api. Required nodejs 6+.
+The main difference is that **all** buffers aren't decoded into a string in parsing time. Required nodejs 6+.
 
 ```js
 const decode = require('btparse/lazy')
@@ -48,4 +48,5 @@ console.log(Reflect.ownKeys(decode(torrent)))
 ```
 
 ## License
-MIT 
+
+MIT, (c) Dmitry Tsvettsikh, 2017+
