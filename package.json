@@ -5,11 +5,8 @@
   "main": "index.js",
   "scripts": {
     "cover": "nyc --reporter=html --reporter=text npm test",
-    "test": "tape test/*.js",
+    "test": "node test/reporter.js",
     "bench": "matcha ./bench/decode.js"
-  },
-  "engines": {
-    "node": ">=4"
   },
   "repository": {
     "type": "git",

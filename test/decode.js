@@ -44,7 +44,7 @@ test('list', function (t) {
 test('dict', function (t) {
   t.deepEqual(decode("d2:abi2ee"), {ab: 2})
   t.deepEqual(decode("d2:abli2eee"), {ab: [2]})
-  t.deepEqual(decode("d2:ab2:cde"), {ab: Buffer.from('cd')})
+  t.deepEqual(decode("d2:ab2:cde"), {ab: from('cd')})
   t.deepEqual(decode("d2:abdee"), {ab: {}})
 
   t.throws(function () {
