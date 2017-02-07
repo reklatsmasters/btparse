@@ -16,7 +16,7 @@ console.log(decode('d3:abcli13eee'))  // {abc: [ 13 ]}
 ```
 
 ## Perfomance
-*windows 10/x64 i5 4690*
+*nodejs 6.9.1 / windows 10 x64 / i5 4690*
 
 |Library| op/s | ms (1e5 op) |
 |-------|:---:|:---:|
