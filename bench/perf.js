@@ -8,7 +8,6 @@ const path = require('path')
 const bencode = require('bencode')
 const btparse = require('../')
 const lazybtparse = require('../lazy')
-const bencoding = require('bencoding')
 
 const file = fs.readFileSync(path.join(__dirname, 'test.torrent'))
 
@@ -31,9 +30,3 @@ for(let i = 0; i < time; ++i) {
   lazybtparse(file)
 }
 console.timeEnd('btparse#lazy')
-
-console.time('bencoding')
-for(let i = 0; i < time; ++i) {
-  bencoding.decode(file)
-}
-console.timeEnd('bencoding')

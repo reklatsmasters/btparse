@@ -5,7 +5,6 @@ const path = require('path')
 
 const bencode = require('bencode')
 const btparse = require('../')
-const bencoding = require('bencoding')
 const lazybtparse = require('../lazy')
 
 const file = fs.readFileSync(path.join(__dirname, 'test.torrent'))
@@ -16,6 +15,4 @@ suite('decode', () => {
   bench('btparse', () => btparse(file))
 
   bench('btparse#lazy', () => lazybtparse(file))
-
-  bench('bencoding', () => bencoding.decode(file))
 })
