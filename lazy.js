@@ -1,7 +1,7 @@
 'use strict'
 
 const next = require('./lib/lexer')
-const parser = require('./lib/parser')
+const lazyparser = require('./lib/lazy')
 
 module.exports = decode
 
@@ -14,5 +14,5 @@ function decode(data) {
     length: buffer.length // save space in IC
   }
 
-  return parser.select(ptr, next(ptr, -1))
+  return lazyparser.select(ptr, next(ptr, -1))
 }

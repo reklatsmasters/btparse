@@ -1,10 +1,11 @@
 {
   "name": "btparse",
   "version": "0.1.1",
-  "description": "Fastest node library for decoding bencoded data and parse torrents. Native C++ implementation, based on libtorrent.",
+  "description": "A modern bencode parser focused on speed and perfomance",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc --reporter=html --reporter=text ava test/*.js",
+    "bench": "matcha ./bench/decode.js"
   },
   "engines": {
     "node": ">=4"
@@ -32,5 +33,11 @@
   },
   "homepage": "https://github.com/reklatsmasters/btparse",
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "ava": "^0.18.0",
+    "bencode": "^0.11.0",
+    "bencoding": "0.0.1",
+    "matcha": "^0.7.0",
+    "nyc": "^10.1.2"
+  }
 }
