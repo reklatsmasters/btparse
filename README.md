@@ -26,8 +26,18 @@ console.log(decode('d3:abcli13eee'))  // {abc: [ 13 ]}
 
 ## API
 
-##### `decode(input: Buffer|String) -> Object|Number|Array|Buffer`
+##### `decode(input: Buffer|String, opts: Options) -> Object|Number|Array|Buffer`
 Parse and decode bencoded message.
+
+* **`opts.depth: Number`**
+
+Max parse depth for objects; default = `infinity`, min = `1`
+
+```js
+const decode = require('btparse')
+
+console.log(decode('d2:abi2e2:bbd2:ccleee', {depth: 1}))  //  {ab: 2, bb: Buffer.from('d2:cclee')}
+```
 
 ## Lazy
 
