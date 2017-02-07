@@ -1,16 +1,17 @@
 'use strict'
 
-const next = require('./lib/lexer')
-const parser = require('./lib/parser')
+var next = require('./lib/lexer')
+var parser = require('./lib/parser')
+var from = require('./lib/from')
 
 module.exports = decode
 
 function decode(data) {
-  const buffer = Buffer.isBuffer(data) ? data : Buffer.from(data)
+  var buffer = Buffer.isBuffer(data) ? data : from(data)
 
-  const ptr = {
+  var ptr = {
     i: 0,
-    buffer,
+    buffer: buffer,
     length: buffer.length // save space in IC
   }
 

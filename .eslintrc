@@ -2,7 +2,7 @@
   "extends": "eslint:recommended",
   "env": {
     "node": true,
-    "es6": true
+    "es6": false
   },
   "rules": {
     "semi": [2, "never"],
@@ -31,7 +31,6 @@
     "no-throw-literal": 2,
     "no-useless-call": 2,
     "no-useless-concat": 2,
-    "vars-on-top": 2,
     "no-trailing-spaces": 2
   }
 }
