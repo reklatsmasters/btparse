@@ -4,7 +4,8 @@
   "description": "A modern bencode parser focused on speed and perfomance",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text ava test/*.js",
+    "cover": "nyc --reporter=html --reporter=text npm test",
+    "test": "ava test/*.js",
     "bench": "matcha ./bench/decode.js"
   },
   "engines": {
