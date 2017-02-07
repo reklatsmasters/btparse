@@ -1,4 +1,5 @@
-## btparse [![Build Status](https://travis-ci.org/ReklatsMasters/btparse.svg?branch=master)](https://travis-ci.org/ReklatsMasters/btparse)
+## btparse [![Build Status](https://travis-ci.org/ReklatsMasters/btparse.svg?branch=master)](https://travis-ci.org/ReklatsMasters/btparse) [![npm](https://img.shields.io/npm/v/btparse.svg)](https://npmjs.org/package/btparse) [![license](https://img.shields.io/npm/l/btparse.svg)](https://npmjs.org/package/btparse) [![downloads](https://img.shields.io/npm/dm/btparse.svg)](https://npmjs.org/package/btparse)
+
 A modern bencode parser focused on speed and perfomance. It used [`recursive descent parser`](https://en.wikipedia.org/wiki/Recursive_descent_parser), a kind of [`top-down`](https://en.wikipedia.org/wiki/Top-down_parsing) parsers.
 
 ## Usage
