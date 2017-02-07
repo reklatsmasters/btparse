@@ -1,4 +1,4 @@
-## btparse
+## btparse [![Build Status](https://travis-ci.org/ReklatsMasters/btparse.svg?branch=master)](https://travis-ci.org/ReklatsMasters/btparse)
 A modern bencode parser focused on speed and perfomance. It used [`recursive descent parser`](https://en.wikipedia.org/wiki/Recursive_descent_parser), a kind of [`top-down`](https://en.wikipedia.org/wiki/Top-down_parsing) parsers.
 
 ## Usage
