@@ -6,15 +6,30 @@ var from = require('../lib/from')
 var compare = require('buffer-compare')
 
 test('int', function (t) {
-  t.equal(decode('i2e'), 2)
-  t.equal(decode('i-23e'), -23)
+  t.equal(decode('i2e'), 2, 'number')
+  t.equal(decode('i-23e'), -23, 'negative number')
+  t.equal(decode('i0e'), 0, 'zero')
+  t.equal(decode('i10e'), 10, 'number with zero')
 
   t.throws(function () {
     decode('i2')
-  })
+  }, 'Invalid data: Missing delimiter')
+
   t.throws(function () {
     decode('ie')
-  })
+  }, 'Unexpected token at pos = 2')
+
+  t.throws(function () {
+    decode('i-0e')
+  }, 'negative zero')
+
+  t.throws(function () {
+    decode('i03e')
+  }, 'zero prefixed number')
+
+  t.throws(function () {
+    decode('i-03e')
+  }, 'zero prefixed negative number')
 
   t.end()
 })
@@ -63,6 +78,18 @@ test('dict', function (t) {
 test('depth', function (t) {
   t.deepEqual(decode('d2:abi2e2:bbd2:ccleee', {depth: 0}), {ab: 2, bb: {cc: []}})
   t.deepEqual(decode('d2:abi2e2:bbd2:ccleee', {depth: 1}), {ab: 2, bb: from('d2:cclee')})
+
+  t.end()
+})
+
+test('empty', function (t) {
+  t.throws(function () {
+    decode('')
+  }, 'Unexpected token at pos = 0')
+
+  t.throws(function () {
+    decode([])
+  }, 'Unexpected token at pos = 0')
 
   t.end()
 })
