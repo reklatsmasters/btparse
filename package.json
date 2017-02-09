@@ -1,6 +1,6 @@
 {
   "name": "btparse",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A modern bencode parser focused on speed and perfomance",
   "main": "index.js",
   "scripts": {
