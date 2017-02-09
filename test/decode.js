@@ -77,7 +77,8 @@ test('dict', function (t) {
 
 test('depth', function (t) {
   t.deepEqual(decode('d2:abi2e2:bbd2:ccleee', {depth: 0}), {ab: 2, bb: {cc: []}})
-  t.deepEqual(decode('d2:abi2e2:bbd2:ccleee', {depth: 1}), {ab: 2, bb: from('d2:cclee')})
+  t.deepEqual(decode('d2:abi2e2:bbd2:ccleee', { depth: 1 }), { ab: 2, bb: from('d2:cclee') })
+  t.deepEqual(decode('d4:infod5:filesld6:lengthi1eeeee', { depth: 1 }), { info: from('d5:filesld6:lengthi1eeee')})
 
   t.end()
 })
