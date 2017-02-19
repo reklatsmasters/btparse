@@ -6,8 +6,10 @@ var from = require('./lib/from')
 
 module.exports = decode
 
-function decode(data, opts) {
-  var buffer = Buffer.isBuffer(data) ? data : from(data)
+function decode(buffer, opts) {
+  if (typeof buffer === 'string') {
+    buffer = from(buffer)
+  }
 
   opts = opts || {}
 
