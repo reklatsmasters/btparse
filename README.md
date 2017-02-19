@@ -16,13 +16,13 @@ console.log(decode('d3:abcli13eee'))  // {abc: [ 13 ]}
 ```
 
 ## Perfomance
-*nodejs 6.9.1 / windows 10 x64 / i5 4690*
+*nodejs 7.5.0 / windows 10 x64 / i5 4690*
 
 |Library| op/s | ms (1e5 op) |
 |-------|:---:|:---:|
-|bencode| 109,484| 887 |
-|btparse| 139,477 | 696 |
-|btparse#lazy|159,597|594 |
+|bencode| 118,387| 838.424 |
+|btparse| 161,059 | 641.632 |
+|btparse#lazy|143,258| 1090.971 |
 
 ## API
 
