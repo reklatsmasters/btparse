@@ -16,13 +16,13 @@ console.log(decode('d3:abcli13eee'))  // {abc: [ 13 ]}
 ```
 
 ## Perfomance
-*nodejs 7.5.0 / windows 10 x64 / i5 4690*
+*nodejs 8.3.0 / windows 10 x64 / i5 4690*
 
-|Library| op/s | ms (1e5 op) |
-|-------|:---:|:---:|
-|bencode| 118,387| 838.424 |
-|btparse| 161,059 | 641.632 |
-|btparse#lazy|143,258| 1090.971 |
+|Library| op/s |
+|-------|:---:|
+|bencode| 129,671 |
+|btparse| 179,075 |
+|btparse#lazy|205,130|
 
 ## API
 
@@ -42,7 +42,7 @@ console.log(decode('d2:abi2e2:bbd2:ccleee', {depth: 1}))  //  {ab: 2, bb: Buffer
 ## Lazy
 
 ##### `decode(input: Buffer|String) -> Proxy<Object>|Number|Array|Buffer`
-The main difference is that **all** buffers aren't decoded into a string in parsing time. Required nodejs 6+.
+The main difference is that **all** buffers decoded into a strings on demand. Required nodejs 6+.
 
 ```js
 const decode = require('btparse/lazy')
