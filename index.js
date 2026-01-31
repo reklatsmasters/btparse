@@ -1,27 +1,21 @@
-'use strict'
+/* eslint-disable n/prefer-global/buffer */
+import next from './lib/lexer.js';
+import * as parser from './lib/parser.js';
 
-var next = require('./lib/lexer')
-var parser = require('./lib/parser')
-var from = require('./lib/from')
-
-module.exports = decode
-
-function decode(buffer, opts) {
+export default function decode(buffer, options = {}) {
   if (typeof buffer === 'string') {
-    buffer = from(buffer)
+    buffer = Buffer.from(buffer);
   }
 
-  opts = opts || {}
+  const depth = options.depth >>> 0; // eslint-disable-line no-bitwise
 
-  var depth = opts.depth >>> 0
-
-  var ptr = {
+  const ptr = {
     i: 0,
-    buffer: buffer,
-    length: buffer.length, // save space in IC
+    buffer,
+    length: buffer.length, // Save space in IC
     depth: depth < 1 ? Infinity : depth,
-    curr_depth: 0
-  }
+    curr_depth: 0, // eslint-disable-line camelcase
+  };
 
-  return parser.select(ptr, next(ptr, -1))
+  return parser.select(ptr, next(ptr, -1));
 }

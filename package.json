@@ -2,11 +2,13 @@
   "name": "btparse",
   "version": "1.0.2",
   "description": "A modern bencode parser focused on speed and perfomance",
-  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./lazy": "./lazy.js"
+  },
+  "type": "module",
   "scripts": {
-    "cover": "nyc --reporter=html --reporter=text npm test",
-    "test": "node test/reporter.js",
-    "bench": "matcha ./bench/decode.js"
+    "test": "npx tape test/*.js"
   },
   "repository": {
     "type": "git",
@@ -22,20 +24,23 @@
     "bdecode"
   ],
   "author": {
-    "name": "Dmitry Tsvettsikh",
-    "email": "me@reklatsmasters.com"
+    "name": "Dmitry Tsvettsikh"
   },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/reklatsmasters/btparse/issues"
   },
   "homepage": "https://github.com/reklatsmasters/btparse",
-  "dependencies": {},
   "devDependencies": {
-    "bencode": "^1.0.0",
+    "bencode": "^4.0.0",
     "buffer-compare": "^1.1.1",
-    "matcha": "^0.7.0",
-    "nyc": "^10.1.2",
-    "tape": "^4.6.3"
+    "prettier": "^3.8.1",
+    "tape": "^4.6.3",
+    "tinybench": "^6.0.0",
+    "xo": "^0.61"
+  },
+  "xo": {
+    "prettier": true,
+    "space": true
   }
 }

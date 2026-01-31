@@ -1,18 +1,15 @@
-'use strict'
+/* eslint-disable n/prefer-global/buffer */
+import next from './lib/lexer.js';
+import * as parser from './lib/lazy.js';
 
-const next = require('./lib/lexer')
-const lazyparser = require('./lib/lazy')
-
-module.exports = decode
-
-function decode(data) {
-  const buffer = Buffer.isBuffer(data) ? data : Buffer.from(data)
+export default function decode(data) {
+  const buffer = Buffer.isBuffer(data) ? data : Buffer.from(data);
 
   const ptr = {
     i: 0,
     buffer,
-    length: buffer.length // save space in IC
-  }
+    length: buffer.length, // Save space in IC
+  };
 
-  return lazyparser.select(ptr, next(ptr, -1))
+  return parser.select(ptr, next(ptr, -1));
 }
