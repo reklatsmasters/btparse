@@ -6,7 +6,7 @@ import btparse from '../index.js';
 import lazybtparse from '../lazy.js';
 
 const file = fs.readFileSync(path.join(import.meta.dirname, 'test.torrent'));
-const bench = new Bench({ name: 'torrent parsers bench', time: 100 });
+const bench = new Bench({ name: 'torrent parsers bench', time: 800 });
 
 bench
   .add('bencode', () => bencode.decode(file))

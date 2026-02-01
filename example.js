@@ -1,10 +1,8 @@
-'use strict'
+import * as fs from 'node:fs';
+import path from 'node:path';
 
-const fs = require('fs')
-const path = require('path')
+import decode from './index.js';
 
-const lazybtparse = require('./lazy')
+const file = fs.readFileSync(path.join(import.meta.dirname, 'bench/test.torrent'))
 
-const file = fs.readFileSync(path.join(__dirname, 'bench/test.torrent'))
-
-console.log(lazybtparse(file).info.pieces)
+console.log(decode(file).info.pieces);

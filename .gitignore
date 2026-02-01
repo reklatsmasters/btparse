@@ -19,3 +19,4 @@ jspm_packages
 *.tgz
 .yarn-integrity
 .idea
+perf.data*
